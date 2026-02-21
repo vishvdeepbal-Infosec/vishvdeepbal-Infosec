@@ -63,6 +63,6 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 ---
 
 ## 📫 Connect with me:
-[LinkedIn](https://www.linkedin.com/in/YOUR_LINKEDIN_URL) | [Email](mailto:vishvdeepbal.infosec@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/https://www.linkedin.com/in/vishvdeep-singh-bal-1752a7241/) | [Email](mailto:vishvdeepbal.infosec@gmail.com)
 
 > *“Security is not a product, but a process.” — Bruce Schneier*
