@@ -13,10 +13,13 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 ## 🚀 What I'm Doing Right Now
 - 🛡️ **Active Lab:** Building a SOC Environment using **Microsoft Sentinel** and **Tenable Nessus**.
 - 📚 **Certification Sprint:** Studying for **CompTIA Security+** (Expected April) & **SC-200**.
-- 🔍 **Mentorship:** Participating in the **RiskStifle Mentorship Program** (Halifax, NS - Remote). Deep-diving into Fortigate Firewalls, Incident Response, and GRC under the guidance of a senior cybersecurity leader (CISSP, CISA, PMP).
+  🎖️ Specialized Mentorship
+**RiskStifle Mentorship Program | Halifax, NS (Remote) | Oct 2025 – Present**
+* **Focus:** Comprehensive training across all Cybersecurity Analyst domains, including GRC, Incident Response, and SOC Operations.
+* **Mentorship:** Guided by a senior cybersecurity leader (CISSP, CISA, PMP) with 15+ years of experience across government, utilities, and regulated energy sectors.
+* **Key Learning:** Developing enterprise-grade risk management strategies and incident response playbooks.
 
 ---
-
 ## 🛠️ Technical Arsenal
 
 | Category | Tools & Technologies |
