@@ -5,14 +5,20 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 
 ---
 
+## 🌐 Professional Portfolio
+👉 **[View My Full Portfolio (about.me)](https://about.me/vishvdeepsingh.infosec)** 🚀
+
+---
+
 ## 🚀 What I'm Doing Right Now
 - 🛡️ **Active Lab:** Building a SOC Environment using **Microsoft Sentinel** and **Tenable Nessus**.
 - 📚 **Certification Sprint:** Studying for **CompTIA Security+** (Expected April) & **SC-200**.
-- 🔍 **Mentorship:** Deep-diving into **Fortigate Firewalls** and Incident Response with RiskStifle.
+- 🔍 **Mentorship:** Participating in the **RiskStifle Mentorship Program** (Halifax, NS - Remote). Deep-diving into Fortigate Firewalls, Incident Response, and GRC under the guidance of a senior cybersecurity leader (CISSP, CISA, PMP).
 
 ---
 
 ## 🛠️ Technical Arsenal
+
 | Category | Tools & Technologies |
 | :--- | :--- |
 | **SIEM / EDR** | Microsoft Sentinel, Splunk, Microsoft Defender, SentinelOne |
@@ -24,6 +30,7 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 ---
 
 ## 📂 Featured SOC Projects
+
 #### 🕵️ [Vulnerability Management Lifecycle (Azure + Tenable)](./Vulnerability-Management-Project)
 *A complete project demonstrating how to identify, prioritize, and remediate vulnerabilities in an Azure-based enterprise environment.*
 
@@ -35,15 +42,24 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 
 ---
 
-## 🎓 Education & Certs
+## 🎓 Education & Certifications
+
+### **Academic**
 - 🎓 **Master of Science (MS) in Cybersecurity** | NYIT Vancouver
+
+### **Professional Designations**
 - 🥇 **(ISC)² Certified in Cybersecurity (CC)**
-- 🏅 **CompTIA Security+** (In Progress)
+- 🏅 **CompTIA Security+** (In Progress - Target April 2026)
+- 🏅 **Microsoft SC-200** (In Progress - Target May 2026)
+
+### **Cybersecurity Job Simulations (Forage)**
+- 🛡️ **AIG:** Shields Up Job Simulation (Issued Jan 2026)
+- 🕵️ **Deloitte Australia:** Cyber Job Simulation - Log Analysis & Investigation (Issued Jan 2026)
+- 📧 **Mastercard:** Cybersecurity Job Simulation - Phishing Analysis (Issued Mar 2025)
 
 ---
 
 ## 📫 Connect with me:
-[LinkedIn](https://www.linkedin.com/in/YOUR_PROFILE_LINK) | [Email](mailto:vishvdeepbal.infosec@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/YOUR_LINKEDIN_URL) | [Email](mailto:vishvdeepbal.infosec@gmail.com)
 
----
-*“Security is not a product, but a process.” — Bruce Schneier*
+> *“Security is not a product, but a process.” — Bruce Schneier*
