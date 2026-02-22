@@ -15,7 +15,7 @@ In Cybersecurity, documentation is as critical as technical execution. This repo
 ## 🗓️ February 2026 Logs
 
 ### 📍 Saturday, Feb 21, 2026 — Day 1: Foundation & Identity
-**Focus:** Firewall Theory & Professional Identity Engineering
+**Focus:** Firewall & Vulnerability Management Theory & Professional Identity Engineering
 
 #### 🏗️ Theoretical Deep Dive (06:00 - 10:00)
 * **Firewall Logic:** Studied Next-Generation Firewall (NGFW) architecture with a focus on **Fortigate**.
