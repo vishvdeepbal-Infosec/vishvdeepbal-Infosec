@@ -33,6 +33,9 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 | **Networking** | Fortigate Firewalls, OPNsense, Wireshark, Azure VNet |
 | **Compliance** | NIST CSF, MITRE ATT&CK, Governance & Risk |
 | **Languages** | KQL (Kusto), Python, PowerShell |
+| **Network Analysis** | Wireshark, Nmap |
+| **Forensics** | FTK Imager, Autopsy, KAPE | 
+| **Ticketing & Workflow** | ServiceNow, Jira, Zendesk |
 
 ---
 
