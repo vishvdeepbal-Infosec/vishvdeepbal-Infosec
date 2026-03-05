@@ -48,7 +48,7 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 #### 🛡️ [Threat Hunt Scenario: Unauthorized TOR Usage](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat%20Hunt%20Scenario%3A%20Unauthorized%20TOR%20Usage.md)
 *Engineering a proactive hunt for Shadow IT. Developing KQL queries in Microsoft Defender to detect silent installers and anomalous circuit-node traffic.*
 
-#### 👻 [GHOSTPKT: ICMP Steganography Tool](https://github.com/vishvdeepbal-Infosec/ICMP-Steganography)
+#### 👻 [GHOSTPKT: ICMP Steganography Tool](https://github.com/vishvdeepbal-Infosec/ICMP-Steganography) (Completed)
 *A Python-based tool utilizing AES-128 encryption to study covert data transmission and detection gaps via Wireshark.*
 
 ---
