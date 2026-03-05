@@ -1,4 +1,4 @@
-# 🛡️ SOC Readiness: Daily Technical Audit Trail
+# 🛡️ SOC Readiness: Weekly Technical Audit Trail
 **Name:** Vishvdeep Singh Bal, CC  
 
 ## 📋 Why this Audit Trail?
