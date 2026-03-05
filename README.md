@@ -44,7 +44,7 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 #### 🕵️ [Vulnerability Management Lifecycle (Azure + Tenable)](./Vulnerability-Management-Project)
 [cite_start]*A complete project demonstrating how to identify, prioritize, and remediate vulnerabilities in an Azure-based enterprise environment.* [cite: 12]
 
-#### 🛡️ [Azure Sentinel & Honeypot Live Analysis](./Azure-Sentinel-SOC-Lab)
+#### 🛡️ [Threat Hunt Report: Unauthorized TOR Usage)
 [cite_start]*Live monitoring of global RDP attacks, using KQL for alert triage and visualization (In Progress).* [cite: 14]
 
 ---
