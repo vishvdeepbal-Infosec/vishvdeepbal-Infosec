@@ -116,6 +116,62 @@ Concept Mastery: Reinforced the difference between "Vulnerabilities" (weaknesses
     * **Production:** Full-scale enterprise deployment.
 * **Change Management Nuance:** Evaluated the "Strategic vs. Tactical" divide, identifying that securing stakeholder buy-in is often more challenging than the physical act of patching.
 
+---
+# 🛡️ 90-Days-Of-Cyber-CPD: Weekly Technical Audit Trail
+**Dates:** March 1, 2026 – March 8, 2026  
+**Focus:** Azure Cloud Fundamentals (AZ-900), Cyber Range Infrastructure, and Threat-Informed Defense.
 
+---
+
+## 📅 Weekly Overview
+This week marked a transition from pure security tool mastery to building the foundational cloud knowledge required for Enterprise SOC operations. By preparing for the AZ-900, I have unified my understanding of Azure administration with my on-going hands-on work in Microsoft Sentinel and Defender. 🚀
+
+---
+
+### **Sunday, March 1: Foundation & Motivation 🧠**
+* **Activity:** Initiated **AZ-900: Microsoft Azure Fundamentals** certification preparation.
+* **Resource:** Microsoft Learn and comprehensive video walkthroughs.
+* **Insight:** Realized that as my Cyber Range is a live Azure Enterprise environment, mastering Azure fundamentals is a prerequisite for scaling my threat hunting and KQL mastery.
+
+### **Monday, March 2: Hands-on Infrastructure & Networking 🏗️**
+* **Lab Work:** Hands-on exploration of the **LOG(N) Pacific Cyber Range** (see environment screenshot below).
+* **Technical Tasks:** * Provisioned and configured **Resource Groups** and **Virtual Machines (VMs)**.
+    * Audited **Management Groups**, **Subscriptions**, and **Network Security Groups (NSG)** to understand traffic flow and hierarchy.
+
+* **Professional Engagement:** Career-focused discussion with Richard from **CDW** regarding SOC opportunities.
+
+### **Tuesday, March 3 – Wednesday, March 4: Learning Path & Career Sync 📝**
+* **Activity:** Completed **Domain 2** (Azure Architecture & Services) on Microsoft Learn.
+* **Documentation:** * Updated professional resume with recent CPD achievements.
+    * Synced the Audit Trail with latest progress to ensure transparency in my learning journey.
+* **Goal:** Defined a clear path to sit for the exam by the following Monday.
+
+### **Thursday, March 5 – Friday, March 6: CTI & Threat-Informed Defense 🔍**
+* **Mentorship:** Deep dive into **MITRE ATT&CK** operationalization via Riskstifle.
+* **Workflow Mastery:**
+    * Leveraged LLMs and reports (e.g., Cisco Talos) to extract **TTPs** from unstructured data.
+    * Fed TTPs into **MITRE ATT&CK Navigator** to generate actionable `.json` threat maps.
+    * **SOC Integration:** Discussed translating these maps into **SIEM/EDR rules** for detecting Indicators of Attack (IoA) and Compromise (IoC).
+* **AZ-900:** Advanced through practice questions, maintaining a constant readiness score of **85%+** across all Microsoft Learn practice assessments.
+
+<img width="1782" height="1087" alt="azure cyber range" src="https://github.com/user-attachments/assets/ff29f52e-d33c-4c0b-a26a-7ec6d713ae54" />
+![AZ-900 Readiness](https://raw.githubusercontent.com/vishvdeepbal-Infosec/90-Days-Of-Cyber-CPD/main/images/image_2dff5e.png)
+*Above: Microsoft Practice Assessment history, showing strong and consistent pass scores of 86% and 88%.*
+
+### **Saturday, March 7: Incident Response (IR) Deep Dive 🚨**
+* **Workshop:** Intensive session on **NIST SP 800-61 Rev. 2** (Incident Handling Guide).
+* **Technical Scenario:** Analyzed how SOC and CTI teams collaborate during the containment and eradication phases.
+* **Homework Assignment:** * Initiated a structured **IRP Walkthrough** for the Cyber Range.
+    * Documented strategies for prioritized vulnerability remediation in environments lacking a formal asset inventory.
+
+### **Sunday, March 8: Environment Scaling & Final Exam Readiness 🎯**
+* **Milestone:** Officially **booked the Microsoft AZ-900 Exam** for tomorrow (Monday, March 9).
+* **Cyber Range Expansion:**
+    * Deployed a **Windows 11 Pro** target machine within the Azure Resource Group.
+    * Updated the Vulnerability Management repository with new project/environment architecture diagrams.
+* **Status:** Environment finalized for next week’s focus on authenticated scans and remediation testing.
+
+---
+**Status:** 🟢 AZ-900 Ready | 🔵 Cyber Range Expanded | 🛡️ MITRE Operationaliz
 
 
