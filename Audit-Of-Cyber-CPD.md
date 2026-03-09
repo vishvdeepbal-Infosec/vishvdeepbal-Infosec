@@ -153,7 +153,8 @@ This week marked a transition from pure security tool mastery to building the fo
 * **AZ-900:** Advanced through practice questions, maintaining a constant readiness score of **85%+** across all Microsoft Learn practice assessments.
 
 <img width="1782" height="1087" alt="azure cyber range" src="https://github.com/user-attachments/assets/ff29f52e-d33c-4c0b-a26a-7ec6d713ae54" />
-![AZ-900 Readiness](https://raw.githubusercontent.com/vishvdeepbal-Infosec/90-Days-Of-Cyber-CPD/main/images/image_2dff5e.png)
+<img width="1210" height="633" alt="image" src="https://github.com/user-attachments/assets/acab1357-f313-46ab-90ba-fe0f3f995ef5" />
+
 *Above: Microsoft Practice Assessment history, showing strong and consistent pass scores of 86% and 88%.*
 
 ### **Saturday, March 7: Incident Response (IR) Deep Dive 🚨**
