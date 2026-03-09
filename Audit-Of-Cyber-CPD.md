@@ -5,7 +5,7 @@
 In Cybersecurity, documentation is as critical as technical execution. This repository serves as a centralized "Central Source of Truth" for my daily growth, capturing insights from:
 
 * **Hands-on Labs:** Building and defending enterprise-grade environments in the **Josh Madakor Cyber Range**.
-* **Certification Tracks:** Daily progress through **CompTIA Security+** and **ISC2 CC** domains.
+* **Certification Tracks:** Daily progress through **AZ-900+** and **SC-200** domains.
 * **Mentorship:** High-level strategic sessions with **RiskStifle** on firewall logic and security audits.
 * **Industry Intelligence:** Insights from daily cyber news, threat reports, and industry podcasts (e.g., Darknet Diaries, CyberWire).
 * **Tool Mastery:** Documentation of my evolving stack: Microsoft Sentinel (SIEM), Defender (EDR), Azure AD, and Tenable.
