@@ -116,12 +116,8 @@ Concept Mastery: Reinforced the difference between "Vulnerabilities" (weaknesses
     * **Production:** Full-scale enterprise deployment.
 * **Change Management Nuance:** Evaluated the "Strategic vs. Tactical" divide, identifying that securing stakeholder buy-in is often more challenging than the physical act of patching.
 
----
-# 🛡️ 90-Days-Of-Cyber-CPD: Weekly Technical Audit Trail
 **Dates:** March 1, 2026 – March 8, 2026  
 **Focus:** Azure Cloud Fundamentals (AZ-900), Cyber Range Infrastructure, and Threat-Informed Defense.
-
----
 
 ## 📅 Weekly Overview
 This week marked a transition from pure security tool mastery to building the foundational cloud knowledge required for Enterprise SOC operations. By preparing for the AZ-900, I have unified my understanding of Azure administration with my on-going hands-on work in Microsoft Sentinel and Defender. 🚀
