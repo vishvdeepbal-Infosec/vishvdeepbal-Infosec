@@ -1,4 +1,4 @@
-# 👋 Hi, I'm Vishvdeep Singh Bal, CC
+# 👋 Hi, I'm Vishvdeep Singh Bal, CC, Microsoft AZ-900
 ### Cybersecurity Analyst | MSc Cybersecurity Graduate | SOC Specialist 🛡️
 
 Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional with a Master’s degree in Cybersecurity and the **(ISC)² Certified in Cybersecurity (CC)** designation. I specialize in SOC operations, vulnerability management, and threat detection within the Microsoft Security stack.
@@ -13,7 +13,7 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 ## 🚀 What I'm Doing Right Now
 - 🛡️ **Active Lab:** Implementing an Enterprise Vulnerability Management Lifecycle using **Tenable Nessus** and **Azure**.
 - 🔍 **Threat Hunting:** Developing **KQL** detection queries for EDR evasion techniques like Timestomping and Unauthorized TOR usage.
-- 📚 **Certification Sprint:** Sitting for **Microsoft AZ-900** (March 2026) | Studying for **SC-200** (Target April 2026).
+- 📚 **Certification Sprint:** Successfully earned **Microsoft AZ-900** (16th March 2026) | Studying for **SC-200** (Target April 2026).
 
 ---
 
