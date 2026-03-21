@@ -182,7 +182,8 @@ This week marked a transition from pure security tool mastery to building the fo
 
 ### **Monday, March 9: Milestone Achievement 🏆**
 * **Certification:** Successfully sat for and cleared the **Microsoft AZ-900: Azure Fundamentals** exam.
-* **Result:** Achieved a high-distinction score of **936/1000**.
+* **Result:** Achieved a high-distinction score of **936/1000**. <img width="1582" height="920" alt="image" src="https://github.com/user-attachments/assets/938b6825-f91d-4d27-ba33-159d9e4acb67" />
+
 * **Impact:** Established a verified foundation in Azure Infrastructure, enabling advanced security scaling in the LOG(N) Pacific Cyber Range.
 
 ### **Wednesday, March 11 – Friday, March 13: Vulnerability Management (Riskstifle)**
@@ -202,7 +203,7 @@ This week marked a transition from pure security tool mastery to building the fo
 *March 16 – March 21*
 
 ### **Monday, March 16 – Wednesday, March 18: KQL & Threat Hunting Triage**
-* **Hands-on Lab:** Developed custom **KQL (Kusto Query Language)** queries for proactive hunting within the Microsoft Sentinel environment.
+* **Hands-on Lab:** Developed custom **KQL (Kusto Query Language)** queries for proactive hunting within the Microsoft Sentinel environment. https://www.linkedin.com/feed/update/urn:li:activity:7438772896946335744/
 * **Documentation:** * Authored a technical deep-dive on **LinkedIn** regarding incident triage and forensic narratives.
     * Updated GitHub repository with new **Sentinel data connectors** and hunting logic.
 * **Status:** ⌨️ KQL Proficiency | 📝 Technical Documentation Published
