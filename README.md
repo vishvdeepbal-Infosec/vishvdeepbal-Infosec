@@ -56,7 +56,8 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 - 🎓 **Master of Science (MS) in Cybersecurity** | NYIT Vancouver (GPA 3.6)
 
 ### **Professional Designations**
-- 🥇 **[(ISC)² Certified in Cybersecurity (CC)](https://www.credly.com/badges/a2e8e203-664d-489a-93cf-4bad2b16b9be/linked_in_profile)** - 🏅 **AZ-900** (In Progress - March 2026)
+- 🥇 **[(ISC)² Certified in Cybersecurity (CC)](https://www.credly.com/badges/a2e8e203-664d-489a-93cf-4bad2b16b9be/linked_in_profile)** 
+- 🏅 **Microsoft AZ-900**- 936/1000 (Completed- March 2026)- https://learn.microsoft.com/en-us/users/vsingh-2811/credentials/caf8022b1b9e0f7f?ref=https%3A%2F%2Fwww.linkedin.com%2F
 - 🏅 **Microsoft SC-200** (In Progress - April 2026)
 
 ### **Cybersecurity Job Simulations (Forage)**
