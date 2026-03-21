@@ -171,7 +171,7 @@ This week marked a transition from pure security tool mastery to building the fo
 * **Status:** Environment finalized for next week’s focus on authenticated scans and remediation testing.
 
 ---
-**Status:** 🟢 AZ-900 Ready | 🔵 Cyber Range Expanded | 🛡️ MITRE Operationaliz
+***Status:*** 🟢 AZ-900 Ready | 🔵 Cyber Range Expanded | 🛡️ MITRE Operationaliz
 ---
 
 **🎯Focus:** Azure Security, Vulnerability Management, and SOC Operations  
