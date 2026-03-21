@@ -5,13 +5,9 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 
 ---
 
-## 🌐 Professional Portfolio (High-Level)
-👉 **[View My Full Portfolio (about.me)](https://about.me/vishvdeepsingh.infosec)** 🚀
-
----
-
 ## 🚀 What I'm Doing Right Now
-- 🛡️ **Active Lab:** Implementing an Enterprise Vulnerability Management Lifecycle using **Tenable Nessus** and **Azure**.
+- 💼 **Cybersecurity Internship:** Active participant at log(N) Pacific – The Cyber Range. Engaging in a live Azure Enterprise environment to deploy security controls and manage cloud infrastructure.
+- 🛡️ **Active Lab:** Implementing an Enterprise Vulnerability Management Lifecycle using **Tenable Nessus** and **Azure**. 
 - 🔍 **Threat Hunting:** Developing **KQL** detection queries for EDR evasion techniques like Timestomping and Unauthorized TOR usage.
 - 📚 **Certification Sprint:** Successfully earned **Microsoft AZ-900** (16th March 2026) | Studying for **SC-200** (Target April 2026).
 
@@ -29,14 +25,15 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 
 | Category | Tools & Technologies |
 | :--- | :--- |
-| **SIEM / EDR** | Microsoft Sentinel, Splunk, Microsoft Defender, SentinelOne |
-| **Vulnerability** | Tenable Nessus, Nmap |
+| **SIEM / EDR** | Microsoft Sentinel, Splunk, Microsoft Defender |
+| **Vulnerability** | Tenable Nessus |
 | **Networking** | Fortigate Firewalls, OPNsense, Wireshark, Azure VNet |
-| **Compliance** | NIST CSF, MITRE ATT&CK, NIST SP 800-53 |
+| **Compliance & Frameworks** | NIST CSF, MITRE ATT&CK, Kill-Chain, NIST SP 800-53, NIST SP 800-61, 40, CIS |
 | **Languages** | KQL (Kusto), Python, PowerShell |
 | **Network Analysis** | Wireshark, Nmap |
+| **Cloud** | Azure |
 | **Forensics** | FTK Imager, Autopsy, KAPE | 
-| **Ticketing & Workflow** | ServiceNow, Jira, Zendesk |
+| **Ticketing & Workflow** | ServiceNow, Jira |
 
 ---
 
