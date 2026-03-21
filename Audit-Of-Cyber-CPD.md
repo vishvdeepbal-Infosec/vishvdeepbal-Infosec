@@ -172,5 +172,59 @@ This week marked a transition from pure security tool mastery to building the fo
 
 ---
 **Status:** 🟢 AZ-900 Ready | 🔵 Cyber Range Expanded | 🛡️ MITRE Operationaliz
+---
+
+**🎯Focus:** Azure Security, Vulnerability Management, and SOC Operations  
+**Period:** March 9 – March 21, 2026
+
+## : Certification Mastery & Vulnerability Lifecycle 🎯
+*March 9 – March 15*
+
+### **Monday, March 9: Milestone Achievement 🏆**
+* **Certification:** Successfully sat for and cleared the **Microsoft AZ-900: Azure Fundamentals** exam.
+* **Result:** Achieved a high-distinction score of **936/1000**.
+* **Impact:** Established a verified foundation in Azure Infrastructure, enabling advanced security scaling in the LOG(N) Pacific Cyber Range.
+
+### **Wednesday, March 11 – Friday, March 13: Vulnerability Management (Riskstifle)**
+* **Advanced Modules:** Attended two specialized classes on the **Vulnerability Management Lifecycle**.
+* **Technical Insight:** * Mastered the nuances between **Credentialed vs. Non-Credentialed** scanning.
+    * Analyzed remediation tracking in environments lacking formal asset inventories.
+* **Status:** 🛡️ Vulnerability Lifecycle Verified | 🟢 Riskstifle Training
+
+### **Saturday, March 14 – Sunday, March 15: Strategic SC-200 Prep**
+* **Activity:** Initiated active preparation for the **SC-200: Microsoft Security Operations Analyst** certification.
+* **Lab Work:** Focused on **Microsoft Defender for Endpoint** deployment and initial SIEM log ingestion.
+* **Status:** 🟠 SC-200 Active Prep | 🔵 Environment Scaling
+
+---
+
+## Week 2: Threat Hunting, Triage, and SOC Architecture 🏗️
+*March 16 – March 21*
+
+### **Monday, March 16 – Wednesday, March 18: KQL & Threat Hunting Triage**
+* **Hands-on Lab:** Developed custom **KQL (Kusto Query Language)** queries for proactive hunting within the Microsoft Sentinel environment.
+* **Documentation:** * Authored a technical deep-dive on **LinkedIn** regarding incident triage and forensic narratives.
+    * Updated GitHub repository with new **Sentinel data connectors** and hunting logic.
+* **Status:** ⌨️ KQL Proficiency | 📝 Technical Documentation Published
+
+### **Saturday, March 21: SOC Intensive (Riskstifle)**
+* **Workshop:** Full-day immersion into **Security Operations Center (SOC)** architecture and modern workflows.
+* **Technical Focus:** * Deep-dive into the **Incident Response (IR) Lifecycle** and SIEM integration.
+    * Strategies for managing **Alert Fatigue** and prioritizing high-fidelity alerts in enterprise environments.
+* **Status:** 🔵 SOC Architecture Mastery | 🟢 IR Workflow Documentation
+
+### **Thursday, March 19 – Friday, March 20: Vulnerability Management & Tooling**
+* **Project Lab:** Launched an ongoing enterprise simulation using **Tenable**.
+* **Technical Tasks:** * Configured the vulnerability management lifecycle: Asset Discovery -> Scanning -> Prioritization -> Remediation.
+    * Mapped identified vulnerabilities to the **MITRE ATT&CK Framework** to evaluate potential exploit paths and business risk.
+* **Status:** 🛡️ Tenable Project Active | 🔍 Risk-Based Prioritization
+
+---
+
+## Current Status Summary:
+* 🟢 **AZ-900 Certified** (Score: 936)
+* 🔵 **SC-200** (Active Study / Lab Phase)
+* 🛡️ **Tenable Vulnerability Project** (In Progress)
+* ⌨️ **KQL & Sentinel Hunting** (Active Documentation)
 
 
