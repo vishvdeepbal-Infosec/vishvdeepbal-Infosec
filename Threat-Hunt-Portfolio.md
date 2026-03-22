@@ -38,4 +38,4 @@ I maintain a transparent record of my professional growth and daily technical la
 * [**Daily Technical Audit Trail**](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Audit-Of-Cyber-CPD.md) — A structured log of my "90-Day Cyber CPD" journey.
 
 ---
-**[LinkedIn](https://www.linkedin.com/in/vishvdeep-singh-bal/)** | **[Main Repository](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec)**
+**[LinkedIn](https://www.linkedin.com/in/vishvdeep-singh-bal-1752a7241/)** | **[Main Repository](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec)**
