@@ -6,12 +6,12 @@ Welcome to my professional security laboratory. This repository documents active
 
 ## 🚀 Featured Scenarios
 
-### [Project Sentinel-Eye: Authentication Audit](Threat-Hunt-Portfolio/Sentinel-Eye)-COMPLETED
+### [Project Sentinel-Eye: Authentication Audit]Threat-Hunt-Portfolio/01-Sentinel-Eye (Completed).md
 * **Focus:** Brute Force & Credential Spraying.
 * **Tech:** Microsoft Sentinel, KQL, Azure Log Analytics.
 * **Outcome:** Identified 350+ internal failed logons and mapped to MITRE T1110.
 
-### [Unauthorized TOR Usage Detection](Scenarios/Exfiltration/TOR.md)-UPCOMING
+### [Unauthorized TOR Usage Detection]Threat-Hunt-Portfolio/02-Unauthorized-TOR-Usage (Upcoming).md
 * **Focus:** Identifying Command & Control (C2) or Exfiltration attempts.
 * **Tech:** KQL, Network Security Groups (NSG).
 * **Outcome:** Detection logic for outbound traffic to known TOR exit nodes.
