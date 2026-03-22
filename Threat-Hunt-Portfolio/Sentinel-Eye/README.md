@@ -20,7 +20,7 @@ To proactively identify and mitigate unauthorized authentication attempts within
 ## 3. Findings & Visualization
 
 *Figure 1: Data visualization of the top 10 Source IPs generating failed logon events over a 24-hour period.*
-![Top Attackers Analysis](<img width="1000" height="600" alt="top_attackers_chart" src="https://github.com/user-attachments/assets/67dbf6ef-1044-41d8-a71b-db6aabd75ecb" />)
+[Top Attackers Analysis](<img width="1000" height="600" alt="top_attackers_chart" src="https://github.com/user-attachments/assets/67dbf6ef-1044-41d8-a71b-db6aabd75ecb" />)
 
 *Figure 2: KQL Query used for the findings & Mapping the detected Brute Force and Password Spraying techniques.*
 <img width="2536" height="1286" alt="image" src="https://github.com/user-attachments/assets/751a638b-8114-4199-9cfd-606f1fdc23c3" />
