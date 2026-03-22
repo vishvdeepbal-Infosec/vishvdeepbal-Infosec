@@ -19,8 +19,11 @@ To proactively identify and mitigate unauthorized authentication attempts within
 
 ## 3. Findings & Visualization
 
-![Top Attackers Analysis](top_attackers_chart.png)
 *Figure 1: Data visualization of the top 10 Source IPs generating failed logon events over a 24-hour period.*
+![Top Attackers Analysis](<img width="1000" height="600" alt="top_attackers_chart" src="https://github.com/user-attachments/assets/67dbf6ef-1044-41d8-a71b-db6aabd75ecb" />)
+
+*Figure 2: KQL Query used for the findings & Mapping the detected Brute Force and Password Spraying techniques.*
+<img width="2536" height="1286" alt="image" src="https://github.com/user-attachments/assets/751a638b-8114-4199-9cfd-606f1fdc23c3" />
 
 ### **A. External Threat: Automated Brute Force**
 - **Source IP:** `185.156.73.24` (Public)
@@ -36,10 +39,10 @@ To proactively identify and mitigate unauthorized authentication attempts within
 
 ---
 
-## 4. Technical Implementation (KQL)
+## 4. Technical Implementation (KQL)-Improved Detection
 The following query was developed and tuned within **Microsoft Sentinel** to reduce alert fatigue by focusing on systemic attacks rather than isolated typos.
 
-```kusto
+kusto
 DeviceLogonEvents
 | where TimeGenerated > ago(24h)
 | where ActionType == "LogonFailed"
@@ -49,3 +52,30 @@ DeviceLogonEvents
             by RemoteIP, RemoteIPType
 | where FailureCount > 50 or TargetCount > 3
 | sort by FailureCount desc
+
+---
+
+## 5. AI-Augmented SOC Workflow
+
+In this investigation, I integrated **Google Gemini (LLM)** as an "AI SOC Co-Pilot" to augment the threat hunting lifecycle. This synergy between human analysis and machine intelligence allowed for:
+
+* **Advanced KQL Refinement:** Leveraged the LLM to optimize query logic, specifically utilizing `dcount` functions to identify target diversity. This was instrumental in distinguishing the **Attack Engine's** spraying pattern from standard noise.
+* **Rapid Telemetry Synthesis:** Automated the conversion of high-volume raw CSV telemetry into this structured, executive-level report, significantly reducing the "Time to Insight."
+* **Data Prioritization:** Utilized AI to assist in the statistical prioritization of the top 10 most aggressive source IPs, ensuring immediate focus on the highest-risk threats.
+
+---
+
+## 6. Response & Actionables
+
+Based on the findings of this hunt, the following security operations were executed:
+
+1.  **Perimeter Defense:** Initiated immediate blocking of identified malicious Public IPs at the **Azure Network Security Group (NSG)** level to neutralize the external brute force threat.
+2.  **Alert Validation:** Successfully cross-referenced activity from `10.0.0.8` with the **log(N) Pacific Attack Engine** logs. This confirmed a 100% detection rate for the simulated "Password Spray" exercise.
+3.  **Endpoint Hardening:** Conducted a post-incident verification to ensure that **Account Lockout Policies** were triggered correctly on all target Windows and Linux machines, preventing unauthorized access during the simulation.
+
+---
+
+
+
+
+
