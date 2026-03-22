@@ -42,8 +42,8 @@ Based in **Vancouver, BC**, I am a detail-oriented Cybersecurity professional wi
 #### 🕵️ [Vulnerability Management Lifecycle (Azure + Tenable)](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Vulnerability-Management-Project/README.md)
 *A complete project demonstrating how to identify, prioritize, and remediate vulnerabilities in an Azure-based enterprise environment using authenticated scans.*
 
-#### 🛡️ [Threat Hunt Scenario: Unauthorized TOR Usage](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat%20Hunt%20Scenario%3A%20Unauthorized%20TOR%20Usage.md)
-*Engineering a proactive hunt for Shadow IT. Developing KQL queries in Microsoft Defender to detect silent installers and anomalous circuit-node traffic.*
+#### 🛡️ [Threat Hunt scenarios](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat%20Hunt%20Portfolio.md)
+*_Welcome to my professional security laboratory. This repository documents active threat hunting scenarios, KQL detection engineering, and incident response workflows performed within a live Azure Enterprise environment._*
 
 #### 👻 [GHOSTPKT: ICMP Steganography Tool](https://github.com/vishvdeepbal-Infosec/ICMP-Steganography) (Completed)
 *A Python-based tool utilizing AES-128 encryption to study covert data transmission and detection gaps via Wireshark.*
