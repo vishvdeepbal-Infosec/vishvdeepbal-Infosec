@@ -6,7 +6,7 @@ Welcome to my professional security laboratory. This repository documents active
 
 ## 🚀 Featured Scenarios
 
-### [Project Sentinel-Eye: Authentication Audit](vishvdeepbal-Infosec/tree/main/Threat-Hunt-Portfolio/Sentinel-Eye)-COMPLETED
+### [Project Sentinel-Eye: Authentication Audit](Threat-Hunt-Portfolio/Sentinel-Eye)-COMPLETED
 * **Focus:** Brute Force & Credential Spraying.
 * **Tech:** Microsoft Sentinel, KQL, Azure Log Analytics.
 * **Outcome:** Identified 350+ internal failed logons and mapped to MITRE T1110.
