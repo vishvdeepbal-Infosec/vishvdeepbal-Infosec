@@ -4,4 +4,4 @@
 
 ## 📄 Full PDF Report
 
-[📥 Download PDF Report](./IR-2026-0225-001-Scattered-Spider.pdf)
+[📥 Download PDF Report](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat-Hunt-Portfolio/Scattered%20Spider%20Hunt%20Report-Vishvdeep.pdf)
