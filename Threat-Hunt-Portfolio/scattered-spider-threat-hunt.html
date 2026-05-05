@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IR-2026-0225-001 | Scattered Spider AiTM/BEC | Vishvdeep Bal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1117;
+    --bg3: #161b22;
+    --bg4: #1c2333;
+    --border: #21262d;
+    --border2: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --text3: #6e7681;
+    --red: #f85149;
+    --red-dim: #3d1a1a;
+    --orange: #e3a644;
+    --orange-dim: #2d1f0a;
+    --cyan: #58a6ff;
+    --cyan-dim: #0d2044;
+    --green: #3fb950;
+    --green-dim: #0d2d1a;
+    --purple: #bc8cff;
+    --yellow: #e3b341;
+    --nav-width: 240px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+  }
+
+  /* ── SIDEBAR NAV ── */
+  #sidebar {
+    width: var(--nav-width);
+    min-height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  .sidebar-header {
+    padding: 20px 16px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .severity-pill {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 2px 8px;
+    background: var(--red-dim);
+    border: 1px solid var(--red);
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 1px;
+  }
+  .nav-section {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-label {
+    padding: 4px 16px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.15s;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+  }
+  .nav-link:hover, .nav-link.active {
+    color: var(--text);
+    background: var(--bg3);
+    border-left-color: var(--cyan);
+  }
+  .nav-link .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border2);
+    flex-shrink: 0;
+  }
+  .nav-link.active .dot { background: var(--cyan); }
+  .score-card {
+    margin: 12px;
+    padding: 10px 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .score-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .score-label { font-size: 10px; color: var(--text3); }
+  .score-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+  /* ── MAIN CONTENT ── */
+  #main {
+    margin-left: var(--nav-width);
+    flex: 1;
+    max-width: calc(100vw - var(--nav-width));
+  }
+
+  /* ── HERO HEADER ── */
+  .hero {
+    background: linear-gradient(160deg, #0d0f14 0%, #0d1117 40%, #110d14 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(248,81,73,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .tag-red { background: var(--red-dim); color: var(--red); border: 1px solid #4a1c1c; }
+  .tag-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid #3d2912; }
+  .tag-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid #0d2d4a; }
+  .tag-green { background: var(--green-dim); color: var(--green); border: 1px solid #0d3320; }
+  .tag-purple { background: #1a1240; color: var(--purple); border: 1px solid #2d1f5e; }
+
+  .hero h1 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .meta-item {
+    background: var(--bg2);
+    padding: 10px 14px;
+  }
+  .meta-key {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .meta-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    word-break: break-all;
+  }
+  .meta-val.danger { color: var(--red); }
+  .meta-val.info { color: var(--cyan); }
+  .meta-val.warn { color: var(--orange); }
+  .meta-val.success { color: var(--green); }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 48px 48px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    min-width: 20px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  p { color: var(--text2); line-height: 1.7; margin-bottom: 12px; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--red);
+    background: var(--red-dim);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+  }
+  .callout.info { border-color: var(--cyan); background: var(--cyan-dim); }
+  .callout.success { border-color: var(--green); background: var(--green-dim); }
+  .callout.warn { border-color: var(--orange); background: var(--orange-dim); }
+  .callout-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .callout.info .callout-title { color: var(--cyan); }
+  .callout.success .callout-title { color: var(--green); }
+  .callout.warn .callout-title { color: var(--orange); }
+  .callout p { color: var(--text2); margin: 0; }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  thead tr {
+    background: var(--bg3);
+    border-bottom: 2px solid var(--border2);
+  }
+  th {
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  tbody tr:hover { background: var(--bg3); }
+  tbody tr:last-child td { border-bottom: none; }
+  td .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .tactic-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .tactic-init { background: #1a0d2e; color: #bc8cff; }
+  .tactic-cred { background: #2d1010; color: #f85149; }
+  .tactic-def { background: #0d1a2e; color: #58a6ff; }
+  .tactic-pers { background: #0d2d1a; color: #3fb950; }
+  .tactic-col { background: #2d220d; color: #e3b341; }
+  .tactic-lat { background: #2d1a0d; color: #e3a644; }
+  .tactic-exfil { background: #1a2d0d; color: #7ee787; }
+  .tactic-impact { background: #2d0d0d; color: #ff7b72; }
+
+  /* ── ATTACK TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), var(--border));
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 0;
+    padding: 0 0 0 20px;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 2px solid var(--border2);
+    z-index: 1;
+  }
+  .tl-item.critical .tl-dot { border-color: var(--red); background: var(--red); box-shadow: 0 0 8px rgba(248,81,73,0.5); }
+  .tl-item.warn .tl-dot { border-color: var(--orange); }
+  .tl-item.info .tl-dot { border-color: var(--cyan); }
+  .tl-item.success .tl-dot { border-color: var(--green); }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .tl-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+  .tl-event { font-size: 12px; color: var(--text2); }
+  .tl-event strong { color: var(--text); }
+  .tl-result {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    white-space: nowrap;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .result-success { background: var(--green-dim); color: var(--green); }
+  .result-fail { background: var(--red-dim); color: var(--red); }
+  .result-event { background: var(--cyan-dim); color: var(--cyan); }
+  .result-warn { background: var(--orange-dim); color: var(--orange); }
+
+  /* ── IOC CARDS ── */
+  .ioc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .ioc-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .ioc-card:hover { border-color: var(--border2); }
+  .ioc-card.danger { border-left: 3px solid var(--red); }
+  .ioc-card.info { border-left: 3px solid var(--cyan); }
+  .ioc-card.warn { border-left: 3px solid var(--orange); }
+  .ioc-type {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .ioc-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    word-break: break-all;
+  }
+  .copy-hint {
+    position: absolute;
+    top: 8px; right: 10px;
+    font-size: 9px;
+    color: var(--text3);
+    display: none;
+  }
+  .ioc-card:hover .copy-hint { display: block; }
+
+  /* ── CHALLENGE EVIDENCE ── */
+  .challenges-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .challenge-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .challenge-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .challenge-header:hover { background: var(--bg3); }
+  .challenge-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    min-width: 32px;
+  }
+  .challenge-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .challenge-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    margin-right: 8px;
+  }
+  .challenge-correct {
+    font-size: 10px;
+    color: var(--green);
+    font-weight: 600;
+  }
+  .challenge-chevron {
+    color: var(--text3);
+    font-size: 10px;
+    transition: transform 0.2s;
+    margin-left: 4px;
+  }
+  .challenge-card.open .challenge-chevron { transform: rotate(90deg); }
+  .challenge-body {
+    display: none;
+    padding: 0 16px 14px 60px;
+    border-top: 1px solid var(--border);
+  }
+  .challenge-card.open .challenge-body { display: block; }
+  .ch-answer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0 8px;
+    padding: 4px 10px;
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+  }
+  .ch-explanation {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ── KQL CODE BLOCKS ── */
+  .kql-block {
+    background: #0a0f16;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+  .kql-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+  .kql-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+  .kql-copy {
+    font-size: 10px;
+    color: var(--text3);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    transition: all 0.15s;
+  }
+  .kql-copy:hover { background: var(--bg4); color: var(--text); }
+  .kql-code {
+    padding: 14px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #8b949e;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .kql-keyword { color: #ff7b72; }
+  .kql-function { color: #d2a8ff; }
+  .kql-string { color: #a5d6ff; }
+  .kql-operator { color: #79c0ff; }
+  .kql-comment { color: #6e7681; font-style: italic; }
+  .kql-num { color: #79c0ff; }
+
+  /* ── IMPACT CIA CARDS ── */
+  .cia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .cia-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .cia-card.critical { border-color: #4a1c1c; background: linear-gradient(160deg, #1a0808, #0d1117); }
+  .cia-card.high { border-color: #3d2912; background: linear-gradient(160deg, #160f05, #0d1117); }
+  .cia-card.low { border-color: #1a2814; background: linear-gradient(160deg, #0a1408, #0d1117); }
+  .cia-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+  .cia-rating {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .cia-card.critical .cia-rating { color: var(--red); }
+  .cia-card.high .cia-rating { color: var(--orange); }
+  .cia-card.low .cia-rating { color: var(--green); }
+  .cia-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
+
+  /* ── RECOMMENDATIONS ── */
+  .rec-group { margin-bottom: 24px; }
+  .rec-group-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rec-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .rec-list { display: flex; flex-direction: column; gap: 6px; }
+  .rec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .rec-item::before {
+    content: '→';
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── TECH STACK ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .tech-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .tech-category {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .tech-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .tech-desc { font-size: 11px; color: var(--text3); }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text3);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .report-footer .mono {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text2);
+  }
+
+  /* ── EXPAND ALL BUTTON ── */
+  .expand-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--border2);
+    background: var(--bg3);
+    color: var(--text2);
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .expand-btn:hover { background: var(--bg4); color: var(--text); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bg3);
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; max-width: 100vw; }
+    section { padding: 32px 20px; }
+    .hero { padding: 32px 20px 24px; }
+    .cia-grid { grid-template-columns: 1fr; }
+    .tl-row { grid-template-columns: 90px 1fr; }
+    .tl-result { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="case-badge">SOC IR</div>
+    <div class="sidebar-title">IR-2026-0225-001<br>Scattered Spider AiTM/BEC</div>
+    <div class="severity-pill">● CRITICAL</div>
+  </div>
+
+  <div class="score-card">
+    <div class="score-num">2410 pts</div>
+    <div class="score-label">HUNT SCORE</div>
+    <div class="score-sub">71st Place · 28/29 Solved</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Report</div>
+    <a class="nav-link active" href="#executive-summary"><span class="dot"></span>Executive Summary</a>
+    <a class="nav-link" href="#threat-actor"><span class="dot"></span>Threat Actor</a>
+    <a class="nav-link" href="#timeline"><span class="dot"></span>Attack Timeline</a>
+    <a class="nav-link" href="#iocs"><span class="dot"></span>Indicators of Compromise</a>
+    <a class="nav-link" href="#tech"><span class="dot"></span>Tech Stack</a>
+    <a class="nav-link" href="#mitre"><span class="dot"></span>MITRE ATT&CK Mapping</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Evidence</div>
+    <a class="nav-link" href="#challenges"><span class="dot"></span>Hunt Challenges (28)</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Findings</div>
+    <a class="nav-link" href="#impact"><span class="dot"></span>Impact Assessment</a>
+    <a class="nav-link" href="#recommendations"><span class="dot"></span>Recommendations</a>
+    <a class="nav-link" href="#conclusion"><span class="dot"></span>Conclusion</a>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<div id="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="tag tag-red">CRITICAL</span>
+      <span class="tag tag-orange">CONTAINED</span>
+      <span class="tag tag-cyan">AiTM</span>
+      <span class="tag tag-cyan">SESSION HIJACKING</span>
+      <span class="tag tag-cyan">MFA BYPASS</span>
+      <span class="tag tag-cyan">BEC FRAUD</span>
+      <span class="tag tag-purple">SCATTERED SPIDER</span>
+    </div>
+    <h1>Adversary-in-the-Middle Attack<br><span>AiTM · MFA Bypass · BEC Wire Fraud</span></h1>
+    <div class="hero-sub">Attributed to Scattered Spider (UNC3944 · Octo Tempest · 0ktapus) · Log(N) Pacific Cyber Range</div>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-key">Case ID</div>
+        <div class="meta-val info">IR-2026-0225-001</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Incident Date</div>
+        <div class="meta-val">2026-02-25</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Analyst</div>
+        <div class="meta-val">Vishvdeep Bal</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Victim Account</div>
+        <div class="meta-val warn">m.smith@lognpacific.org</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Attacker IP</div>
+        <div class="meta-val danger">205.147.16.190 (NL)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Attacker Platform</div>
+        <div class="meta-val danger">Linux / Firefox 147.0</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">AAD Session ID</div>
+        <div class="meta-val info" style="font-size:9.5px;">00225cfa-a0ff-fb46-a079-5d152fcdf72a</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">BEC Target</div>
+        <div class="meta-val warn">j.reynolds@lognpacific.org</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Exfil Address</div>
+        <div class="meta-val danger">insights@duck.com</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Critical Gap</div>
+        <div class="meta-val danger">ConditionalAccess: notApplied</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Hunt Score</div>
+        <div class="meta-val success">2410 pts · 71st Place · 28/29</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Threat Actor</div>
+        <div class="meta-val danger">Scattered Spider / UNC3944</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 1: Executive Summary ── -->
+  <section id="executive-summary">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Executive Summary</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>On <strong>February 25, 2026</strong>, SOC Analyst Vishvdeep Bal conducted a structured threat hunt on the <strong>Log(N) Pacific Cyber Range</strong>, identifying and fully reconstructing a sophisticated <strong>Adversary-in-the-Middle (AiTM)</strong> attack against the Microsoft 365 account of <strong>m.smith@lognpacific.org</strong>.</p>
+
+    <p>The intrusion was attributed to <strong>Scattered Spider (UNC3944 / Octo Tempest)</strong>, a financially motivated threat group previously linked to breaches at MGM Resorts and Caesars Entertainment. The group is known for Infostealer credential harvesting, MFA fatigue push harassment, AiTM reverse-proxy phishing, and Business Email Compromise fraud.</p>
+
+    <div class="callout">
+      <div class="callout-title">⚠ Critical Defensive Gap</div>
+      <p><strong>ConditionalAccessStatus was notApplied on every attacker sign-in.</strong> A single Conditional Access policy requiring compliant, managed devices would have blocked the attacker's Linux/Firefox 147.0 session replay entirely — regardless of whether the session token was valid.</p>
+    </div>
+
+    <p>The attacker obtained Mark Smith's credentials via Infostealer malware, then used a reverse-proxy phishing framework (consistent with Evilginx) to intercept his session token mid-authentication, fully bypassing MFA. Operating from <strong>205.147.16.190 (Netherlands)</strong>, the attacker achieved account takeover at <strong>21:59:52 UTC</strong> after 3 pre-success attempts, then executed a multi-stage post-compromise campaign.</p>
+
+    <div class="callout info">
+      <div class="callout-title">Hunt Result</div>
+      <p>28 of 29 challenges solved · <strong>2410 points</strong> · <strong>71st place globally</strong> on the Log(N) Pacific leaderboard. The complete attack was correlated through a single AAD Session ID, demonstrating the forensic value of session-level correlation across SigninLogs, CloudAppEvents, and EmailEvents in Microsoft Sentinel.</p>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: Threat Actor ── -->
+  <section id="threat-actor">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Threat Actor — Scattered Spider</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>Challenge Q29 confirmed attribution to <strong>Scattered Spider</strong> (also tracked as UNC3944, Octo Tempest, and 0ktapus). The group is primarily English-speaking and financially motivated, specialising in MFA fatigue, AiTM phishing, SIM swapping, and large-scale BEC fraud. Documented victims include MGM Resorts International and Caesars Entertainment, both compromised using identical techniques.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>TTP</th><th>Evidence Observed</th><th>MITRE ID</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Infostealer Credential Theft</strong></td><td>Mark's credentials pre-obtained before MFA fatigue phase</td><td><span class="mono" style="color:var(--red);">T1555</span></td></tr>
+          <tr><td><strong>AiTM Reverse-Proxy Phishing</strong></td><td>Evilginx-style session token intercept from Netherlands IP</td><td><span class="mono" style="color:var(--red);">T1557.001</span></td></tr>
+          <tr><td><strong>MFA Fatigue (Push Harassment)</strong></td><td>3 pre-success MFA attempts (50074, 50140×2)</td><td><span class="mono" style="color:var(--red);">T1621</span></td></tr>
+          <tr><td><strong>Anonymising Infrastructure</strong></td><td>205.147.16.190 — Netherlands proxy/VPN</td><td><span class="mono" style="color:var(--red);">T1090</span></td></tr>
+          <tr><td><strong>Linux/Firefox Operator Profile</strong></td><td>DeviceDetail: Linux, Firefox 147.0, isCompliant:false, isManaged:false</td><td><span class="mono" style="color:var(--red);">T1078</span></td></tr>
+          <tr><td><strong>Inbox Rule — Forward (Stealth)</strong></td><td>Rule '.' → ForwardTo: insights@duck.com, financial keywords</td><td><span class="mono" style="color:var(--red);">T1137.005</span></td></tr>
+          <tr><td><strong>Inbox Rule — Delete (Blindfold)</strong></td><td>Rule '..' → DeleteMessage on security/phishing/compromised alerts</td><td><span class="mono" style="color:var(--red);">T1137.005</span></td></tr>
+          <tr><td><strong>StopProcessingRules Priority</strong></td><td>Both rules set StopProcessingRules:True — suppresses user rules</td><td><span class="mono" style="color:var(--red);">T1137.005</span></td></tr>
+          <tr><td><strong>Email Thread Hijacking</strong></td><td>BEC RE: Invoice #INV-2026-0892 — wire fraud to j.reynolds</td><td><span class="mono" style="color:var(--red);">T1566.002</span></td></tr>
+          <tr><td><strong>OneDrive/SharePoint Exfil</strong></td><td>FileAccessed, PageViewed, ListCreated from 205.147.16.190</td><td><span class="mono" style="color:var(--red);">T1213.002</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: Timeline ── -->
+  <section id="timeline">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Full Attack Timeline (UTC)</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item warn">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">Pre-Incident</div>
+          <div class="tl-event"><strong>Infostealer harvests Mark's M365 credentials</strong> — credentials obtained before MFA phase begins</div>
+          <div class="tl-result result-warn">CRED THEFT</div>
+        </div>
+      </div>
+      <div class="tl-item success">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:44:11</div>
+          <div class="tl-event"><strong>Mark signs in legitimately</strong> from 172.175.65.103 — Windows 10 / Edge 145.0 baseline established</div>
+          <div class="tl-result result-success">0 — SUCCESS</div>
+        </div>
+      </div>
+      <div class="tl-item warn">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:44:23</div>
+          <div class="tl-event"><strong>KMSI interrupt</strong> — session token interception window opens for AiTM proxy</div>
+          <div class="tl-result result-warn">50140 (KMSI)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:54:24</div>
+          <div class="tl-event"><strong>Attacker: MFA gate hit (Attempt 1)</strong> from 205.147.16.190 — strong authentication required</div>
+          <div class="tl-result result-fail">50074 (MFA)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:54:55</div>
+          <div class="tl-event"><strong>Session suspended (Attempt 2)</strong> — KMSI interrupt from attacker IP</div>
+          <div class="tl-result result-fail">50140 (KMSI)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:55:15</div>
+          <div class="tl-event"><strong>Final KMSI re-attempt (Attempt 3)</strong> — third pre-success failure from attacker IP</div>
+          <div class="tl-result result-fail">50140 (KMSI)</div>
+        </div>
+      </div>
+      <div class="tl-item critical">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:59:52</div>
+          <div class="tl-event"><strong>⚑ PIVOT — MFA bypassed via token replay</strong> — first successful attacker sign-in. Account takeover complete. ConditionalAccess: notApplied.</div>
+          <div class="tl-result result-success">0 — BREACH</div>
+        </div>
+      </div>
+      <div class="tl-item info">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">21:56–22:05</div>
+          <div class="tl-event"><strong>MailItemsAccessed</strong> — attacker reads inbox to profile target before setting up persistence</div>
+          <div class="tl-result result-event">CloudAppEvent</div>
+        </div>
+      </div>
+      <div class="tl-item warn">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:02:33</div>
+          <div class="tl-event"><strong>Inbox rule '.' created</strong> — ForwardTo: insights@duck.com, keywords: invoice, payment, wire, transfer</div>
+          <div class="tl-result result-warn">New-InboxRule</div>
+        </div>
+      </div>
+      <div class="tl-item warn">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:03:59</div>
+          <div class="tl-event"><strong>Inbox rule '..' created</strong> — DeleteMessage on: suspicious, security, phishing, unusual, compromised, verify. StopProcessingRules:True.</div>
+          <div class="tl-result result-warn">New-InboxRule</div>
+        </div>
+      </div>
+      <div class="tl-item critical">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:06:39</div>
+          <div class="tl-event"><strong>BEC email sent as Mark</strong> — RE: Invoice #INV-2026-0892 – Updated Banking Details (thread hijack to j.reynolds)</div>
+          <div class="tl-result result-fail">EmailSent</div>
+        </div>
+      </div>
+      <div class="tl-item info">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:07:16</div>
+          <div class="tl-event"><strong>FileAccessed — Microsoft OneDrive for Business</strong> from attacker IP</div>
+          <div class="tl-result result-event">FileAccessed</div>
+        </div>
+      </div>
+      <div class="tl-item info">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:07:47</div>
+          <div class="tl-event"><strong>PageViewed — Microsoft SharePoint Online</strong> from attacker IP</div>
+          <div class="tl-result result-event">PageViewed</div>
+        </div>
+      </div>
+      <div class="tl-item info">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:07–22:10</div>
+          <div class="tl-event"><strong>ListCreated, ListColumnCreated, Broke sharing inheritance</strong> — SharePoint manipulation from attacker IP</div>
+          <div class="tl-result result-event">CloudAppEvents</div>
+        </div>
+      </div>
+      <div class="tl-item critical">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:29:33</div>
+          <div class="tl-event"><strong>Urgent Wire Transfer Request</strong> sent to j.reynolds@lognpacific.org</div>
+          <div class="tl-result result-fail">EmailSent</div>
+        </div>
+      </div>
+      <div class="tl-item critical">
+        <div class="tl-dot"></div>
+        <div class="tl-row">
+          <div class="tl-time">22:31:19.668</div>
+          <div class="tl-event"><strong>Millisecond-identical burst</strong> — automated exfiltration activity confirmed. 30+ rapid API calls from attacker IP.</div>
+          <div class="tl-result result-fail">Automated Exfil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: IOCs ── -->
+  <section id="iocs">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Indicators of Compromise</h2>
+      <div class="section-line"></div>
+    </div>
+    <p style="margin-bottom:0;">Click any card to copy the IOC value to clipboard.</p>
+    <div class="ioc-grid">
+      <div class="ioc-card danger" onclick="copyIOC('205.147.16.190',this)">
+        <div class="ioc-type">Attacker IP</div>
+        <div class="ioc-val">205.147.16.190</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card danger" onclick="copyIOC('Linux / Firefox 147.0',this)">
+        <div class="ioc-type">Attacker Platform</div>
+        <div class="ioc-val">Linux / Firefox 147.0 — isCompliant:false, isManaged:false</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card warn" onclick="copyIOC('m.smith@lognpacific.org',this)">
+        <div class="ioc-type">Victim Account</div>
+        <div class="ioc-val">m.smith@lognpacific.org (Mark Smith)</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card warn" onclick="copyIOC('172.175.65.103',this)">
+        <div class="ioc-type">Victim IP / Device</div>
+        <div class="ioc-val">172.175.65.103 — Windows 10 / Edge 145.0</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card info" onclick="copyIOC('00225cfa-a0ff-fb46-a079-5d152fcdf72a',this)">
+        <div class="ioc-type">AAD Session ID</div>
+        <div class="ioc-val">00225cfa-a0ff-fb46-a079-5d152fcdf72a</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card danger" onclick="copyIOC('insights@duck.com',this)">
+        <div class="ioc-type">Exfil / Forward Address</div>
+        <div class="ioc-val">insights@duck.com (attacker-controlled)</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card danger" onclick="copyIOC('.',this)">
+        <div class="ioc-type">Forward Rule Name</div>
+        <div class="ioc-val">. (single period) — stealth naming, nearly invisible in UI</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card danger" onclick="copyIOC('..',this)">
+        <div class="ioc-type">Delete Rule Name</div>
+        <div class="ioc-val">.. (double period) — deletes security alerts</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card warn" onclick="copyIOC('invoice, payment, wire, transfer',this)">
+        <div class="ioc-type">Forward Rule Keywords</div>
+        <div class="ioc-val">invoice, payment, wire, transfer</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card warn" onclick="copyIOC('suspicious, security, phishing, unusual, compromised, verify',this)">
+        <div class="ioc-type">Delete Rule Keywords</div>
+        <div class="ioc-val">suspicious, security, phishing, unusual, compromised, verify</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card warn" onclick="copyIOC('j.reynolds@lognpacific.org',this)">
+        <div class="ioc-type">BEC Target</div>
+        <div class="ioc-val">j.reynolds@lognpacific.org (Jay Reynolds — Finance)</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="ioc-card danger" onclick="copyIOC('RE: Invoice #INV-2026-0892 - Updated Banking Details',this)">
+        <div class="ioc-type">BEC Subject</div>
+        <div class="ioc-val">RE: Invoice #INV-2026-0892 – Updated Banking Details</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: Tech Stack ── -->
+  <section id="tech">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Technologies &amp; Tools Used</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <div class="tech-category">SIEM</div>
+        <div class="tech-name">Microsoft Sentinel</div>
+        <div class="tech-desc">Primary investigation platform — log ingestion, querying, alerting</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Query Language</div>
+        <div class="tech-name">KQL (Kusto Query Language)</div>
+        <div class="tech-desc">All detection, correlation, and behavioural analysis queries</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Log Source</div>
+        <div class="tech-name">Azure AD SigninLogs</div>
+        <div class="tech-desc">Auth telemetry — IP, ResultType, ConditionalAccessStatus, SessionId</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Log Source</div>
+        <div class="tech-name">CloudAppEvents</div>
+        <div class="tech-desc">Post-auth actions — MailItemsAccessed, NewInboxRule, FileAccessed</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Log Source</div>
+        <div class="tech-name">EmailEvents</div>
+        <div class="tech-desc">Email metadata — BEC detection, thread hijacking, SenderIPv4</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Identity Platform</div>
+        <div class="tech-name">Microsoft Entra ID</div>
+        <div class="tech-desc">MFA config, Conditional Access, session management</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Productivity Suite</div>
+        <div class="tech-name">Microsoft 365</div>
+        <div class="tech-desc">Target — Outlook, SharePoint Online, OneDrive for Business</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Workspace</div>
+        <div class="tech-name">LAW-Cyber-Range</div>
+        <div class="tech-desc">Log Analytics Workspace — live cyber range data source</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Framework</div>
+        <div class="tech-name">MITRE ATT&CK v14</div>
+        <div class="tech-desc">Tactic/technique mapping across the full kill chain</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Cyber Range</div>
+        <div class="tech-name">Log(N) Pacific</div>
+        <div class="tech-desc">Simulated enterprise SOC environment for the hunt</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Attack Tooling</div>
+        <div class="tech-name">Evilginx / AiTM Proxy</div>
+        <div class="tech-desc">Suspected reverse-proxy session token theft framework</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-category">Credential Source</div>
+        <div class="tech-name">Infostealer Malware</div>
+        <div class="tech-desc">Initial credential acquisition — saved passwords/browser data</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: MITRE ── -->
+  <section id="mitre">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">MITRE ATT&amp;CK Mapping</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tactic</th><th>Technique ID</th><th>Technique</th><th>Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="tactic-tag tactic-init">Initial Access</span></td><td><span class="mono" style="color:var(--purple);">T1566.002</span></td><td>Spearphishing Link</td><td>AiTM phishing reverse-proxy link delivered to Mark</td></tr>
+          <tr><td><span class="tactic-tag tactic-cred">Credential Access</span></td><td><span class="mono" style="color:var(--purple);">T1555</span></td><td>Password Stores</td><td>Infostealer pre-harvested Mark's saved credentials</td></tr>
+          <tr><td><span class="tactic-tag tactic-cred">Credential Access</span></td><td><span class="mono" style="color:var(--purple);">T1539</span></td><td>Steal Web Session Cookie</td><td>Token captured post-MFA via AiTM proxy (Evilginx)</td></tr>
+          <tr><td><span class="tactic-tag tactic-cred">Credential Access</span></td><td><span class="mono" style="color:var(--purple);">T1621</span></td><td>MFA Request Generation</td><td>3 fatigue push attempts before bypass (50074, 50140×2)</td></tr>
+          <tr><td><span class="tactic-tag tactic-def">Defense Evasion</span></td><td><span class="mono" style="color:var(--purple);">T1078</span></td><td>Valid Accounts</td><td>Legitimate stolen session replayed from NL IP</td></tr>
+          <tr><td><span class="tactic-tag tactic-def">Defense Evasion</span></td><td><span class="mono" style="color:var(--purple);">T1556.006</span></td><td>MFA Bypass</td><td>Token replay — MFA not independently satisfied</td></tr>
+          <tr><td><span class="tactic-tag tactic-def">Defense Evasion</span></td><td><span class="mono" style="color:var(--purple);">T1090</span></td><td>Proxy</td><td>Netherlands VPN/proxy — 205.147.16.190</td></tr>
+          <tr><td><span class="tactic-tag tactic-pers">Persistence</span></td><td><span class="mono" style="color:var(--purple);">T1137.005</span></td><td>Outlook Rules</td><td>Rules '.' (forward financial) and '..' (delete security alerts)</td></tr>
+          <tr><td><span class="tactic-tag tactic-col">Collection</span></td><td><span class="mono" style="color:var(--purple);">T1114.002</span></td><td>Remote Email Collection</td><td>MailItemsAccessed at scale — inbox profiling pre-BEC</td></tr>
+          <tr><td><span class="tactic-tag tactic-col">Collection</span></td><td><span class="mono" style="color:var(--purple);">T1213.002</span></td><td>SharePoint</td><td>SharePoint Online PageViewed/ListCreated from attacker IP</td></tr>
+          <tr><td><span class="tactic-tag tactic-col">Collection</span></td><td><span class="mono" style="color:var(--purple);">T1213</span></td><td>Information Repositories</td><td>OneDrive FileAccessed at 22:07:16 UTC</td></tr>
+          <tr><td><span class="tactic-tag tactic-lat">Lateral Movement</span></td><td><span class="mono" style="color:var(--purple);">T1534</span></td><td>Internal Spearphishing</td><td>BEC thread hijack to j.reynolds — Intra-org direction</td></tr>
+          <tr><td><span class="tactic-tag tactic-exfil">Exfiltration</span></td><td><span class="mono" style="color:var(--purple);">T1567</span></td><td>Exfil over Web Service</td><td>Financial mail forwarded to duck.com; M365 API access burst</td></tr>
+          <tr><td><span class="tactic-tag tactic-impact">Impact</span></td><td><span class="mono" style="color:var(--purple);">T1657</span></td><td>Financial Theft</td><td>Wire fraud — Urgent Wire Transfer Request to j.reynolds</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7: Hunt Challenges ── -->
+  <section id="challenges">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Hunt Challenge Evidence — Log(N) Pacific Cyber Range</h2>
+      <div class="section-line"></div>
+    </div>
+    <p>All 28 challenges below were solved using KQL against the <strong>LAW-Cyber-Range</strong> Log Analytics Workspace in Microsoft Sentinel. Each entry shows the challenge question, the answer confirmed correct, and the analytical reasoning.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin:16px 0;">
+      <button class="expand-btn" onclick="expandAll()">Expand All</button>
+      <button class="expand-btn" onclick="collapseAll()">Collapse All</button>
+      <span style="color:var(--text3);font-size:11px;">28 challenges · 2410 pts total</span>
+    </div>
+    <div class="challenges-grid">
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q02</span>
+          <span class="challenge-name">Attacker Source IP</span>
+          <span class="challenge-pts">50 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ 205.147.16.190</div>
+          <p class="ch-explanation">Baselining Mark's daytime IP (172.175.65.103) against evening sessions revealed 205.147.16.190 as the anomalous IP. SigninLogs filtered to Mark's UPN and compared IPAddress values between daytime and evening sessions isolated the attacker's Netherlands-geolocated IP.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q03</span>
+          <span class="challenge-name">Attack Origin Country</span>
+          <span class="challenge-pts">50 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ NE (Netherlands)</div>
+          <p class="ch-explanation">Location field in SigninLogs confirmed country code NE — Netherlands. An employee authenticating from the Netherlands during off-hours from a different device profile is a clear geographic anomaly signal.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q04</span>
+          <span class="challenge-name">MFA Denial Error Code</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ 50074</div>
+          <p class="ch-explanation">ResultType 50074 in SigninLogs confirmed the attacker hit the MFA gate — "Strong Authentication is required." This error code indicates MFA was prompted but not completed, distinguishing it from a KMSI/session interrupt (50140).</p>
+          <div class="kql-block">
+            <div class="kql-header"><span class="kql-label">KQL — MFA Error Detection</span><button class="kql-copy" onclick="copyKQL(this)">Copy</button></div>
+            <div class="kql-code"><span class="kql-keyword">SigninLogs</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> IPAddress <span class="kql-operator">==</span> <span class="kql-string">"205.147.16.190"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> UserPrincipalName <span class="kql-operator">==</span> <span class="kql-string">"m.smith@lognpacific.org"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">project</span> TimeGenerated, ResultType, ResultDescription
+<span class="kql-operator">|</span> <span class="kql-keyword">sort by</span> TimeGenerated <span class="kql-keyword">asc</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q05</span>
+          <span class="challenge-name">MFA Fatigue Intensity</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ 3</div>
+          <p class="ch-explanation">KQL count of pre-success non-zero ResultType entries from the attacker's IP returned exactly 3: one 50074 (MFA required) and two 50140 (KMSI interrupts). This is the MFA fatigue count — the number of times the attacker was blocked before the token replay succeeded.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q06</span>
+          <span class="challenge-name">Application Accessed Post-MFA</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ One Outlook Web</div>
+          <p class="ch-explanation">SigninLogs sorted ascending after the first successful attacker sign-in revealed 'One Outlook Web' as the very first application accessed. A remote attacker without the desktop app installed would use the web version, confirming non-managed device access.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q07</span>
+          <span class="challenge-name">Attacker Operating System</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Linux</div>
+          <p class="ch-explanation">DeviceDetail JSON field in SigninLogs confirmed Linux OS. Mark's corporate device runs Windows 10 — so Linux is a clear anomaly. Three anomaly layers: different country + different OS + different browser, all deviating from Mark's established baseline.</p>
+          <div class="kql-block">
+            <div class="kql-header"><span class="kql-label">KQL — DeviceDetail OS Extraction</span><button class="kql-copy" onclick="copyKQL(this)">Copy</button></div>
+            <div class="kql-code"><span class="kql-keyword">SigninLogs</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> IPAddress <span class="kql-operator">==</span> <span class="kql-string">"205.147.16.190"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">project</span> TimeGenerated, AppDisplayName, DeviceDetail
+<span class="kql-comment">// DeviceDetail shows: {"operatingSystem":"Linux","browser":"Firefox 147.0","isCompliant":false,"isManaged":false}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q08</span>
+          <span class="challenge-name">Attacker Browser</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Firefox 147.0</div>
+          <p class="ch-explanation">DeviceDetail browser field confirmed Firefox 147.0 — vs Mark's Edge 145.0 baseline. Cross-referencing with Mark's normal browser completes the 3-layer anomaly profile: different country (NL), different OS (Linux), different browser (Firefox vs Edge).</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q09</span>
+          <span class="challenge-name">First Post-Auth Action</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ MailItemsAccessed</div>
+          <p class="ch-explanation">CloudAppEvents sorted ascending from the attacker's IP — MailItemsAccessed was the very first post-auth action. This is classic attacker behaviour: read the inbox first to understand the target, identify ongoing financial conversations, and plan the BEC lure before setting up persistence.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q10</span>
+          <span class="challenge-name">Persistence Rule Creation Method</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ New-InboxRule</div>
+          <p class="ch-explanation">ActionType field in CloudAppEvents confirmed New-InboxRule as the persistence mechanism. Inbox rules are silent, persistent, and often overlooked by defenders — making them a favourite Scattered Spider technique for maintaining data access and suppressing security alerts.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q11</span>
+          <span class="challenge-name">Forward Rule Name</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ . (single period)</div>
+          <p class="ch-explanation">RawEventData Parameters Name field revealed '.' (single period) — nearly invisible in any inbox rules UI. Parsing the RawEventData JSON from the New-InboxRule CloudAppEvent and expanding the Parameters array for a Property.Name == "Name" field revealed the covert rule name.</p>
+          <div class="kql-block">
+            <div class="kql-header"><span class="kql-label">KQL — Extract Inbox Rule Name</span><button class="kql-copy" onclick="copyKQL(this)">Copy</button></div>
+            <div class="kql-code"><span class="kql-keyword">CloudAppEvents</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> IPAddress <span class="kql-operator">==</span> <span class="kql-string">"205.147.16.190"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> ActionType <span class="kql-operator">==</span> <span class="kql-string">"New-InboxRule"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">extend</span> DetailedData <span class="kql-operator">=</span> <span class="kql-function">parse_json</span>(RawEventData)
+<span class="kql-operator">|</span> <span class="kql-keyword">mv-expand</span> Property <span class="kql-operator">=</span> DetailedData.Parameters
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> Property.Name <span class="kql-operator">==</span> <span class="kql-string">"Name"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">extend</span> RuleName <span class="kql-operator">=</span> <span class="kql-function">tostring</span>(Property.Value)
+<span class="kql-operator">|</span> <span class="kql-keyword">project</span> TimeGenerated, AccountDisplayName, ActionType, RuleName, IPAddress</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q12</span>
+          <span class="challenge-name">Forward Destination</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ insights@duck.com</div>
+          <p class="ch-explanation">ForwardTo parameter in the RawEventData Parameters array contained insights@duck.com — the attacker's external exfiltration address for financial emails. This is a critical IOC for email gateway blocking.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q13</span>
+          <span class="challenge-name">Forward Rule Keywords</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ invoice, payment, wire, transfer</div>
+          <p class="ch-explanation">SubjectOrBodyContainsWords on rule '.' = invoice, payment, wire, transfer — confirming BEC and invoice fraud intent. The attacker only wants financial emails forwarded; other email traffic is irrelevant to their objective.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q14</span>
+          <span class="challenge-name">Rule Processing Flag</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ StopProcessingRules</div>
+          <p class="ch-explanation">StopProcessingRules:True on both rules prevents Mark's own alert rules from ever firing. Smart attackers configure this parameter so no other rules process the matched emails after theirs — ensuring the user's own defensive rules are silenced.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q15</span>
+          <span class="challenge-name">Delete Rule Name</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ .. (double period)</div>
+          <p class="ch-explanation">The second inbox rule named '..' (double period) is set for deletion — not forwarding. Smart attackers don't just steal; they hide. The double-period name is designed to be nearly invisible alongside the single-period rule in any list view.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q16</span>
+          <span class="challenge-name">Delete Rule Keywords</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ suspicious, security, phishing, unusual, compromised, verify</div>
+          <p class="ch-explanation">Keywords on the delete rule '..': suspicious, security, phishing, unusual, compromised, verify — a complete security blackout. Any email from Microsoft, IT, or the SOC warning Mark about the compromise is automatically deleted before he sees it. Identity alerts, IT notifications, and self-correction warnings from colleagues are all suppressed.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q17</span>
+          <span class="challenge-name">BEC Target</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ j.reynolds@lognpacific.org</div>
+          <p class="ch-explanation">EmailEvents pivoted to the attacker IP revealed j.reynolds@lognpacific.org (Jay Reynolds, Finance) as the BEC target. The attacker profiled the inbox first to identify financial contacts before crafting the wire fraud request.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q18</span>
+          <span class="challenge-name">BEC Subject Line</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ RE: Invoice #INV-2026-0892 – Updated Banking Details</div>
+          <p class="ch-explanation">The attacker used classic thread hijacking — replying to an existing invoice thread rather than creating a new email. The 'RE:' prefix maximises credibility, making the recipient believe this is a continuation of a known conversation. The subject reveals the social engineering pretext: updated banking details for an existing invoice.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q19</span>
+          <span class="challenge-name">Email Direction</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Intra-org</div>
+          <p class="ch-explanation">EmailDirection = Intra-org — the BEC email was sent internally, bypassing all external email gateway filters. An email from Mark Smith to Jay Reynolds appears as completely internal and legitimate, circumventing any external sender inspection rules.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q20</span>
+          <span class="challenge-name">BEC Sender IP</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ 205.147.16.190</div>
+          <p class="ch-explanation">SenderIPv4 = 205.147.16.190 — cross-referencing the sign-in IP with the email sender IP proves the same stolen session was used for both authentication and email sending. This is a definitive forensic link tying the BEC email to the attacker's session.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q21</span>
+          <span class="challenge-name">Cloud App Accessed (OneDrive)</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Microsoft OneDrive for Business</div>
+          <p class="ch-explanation">CloudAppEvents FileAccessed action from the attacker IP confirmed Microsoft OneDrive for Business. Data exposure extends beyond email to personal cloud storage — the attacker scoped all available data stores beyond just the inbox.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q22</span>
+          <span class="challenge-name">SharePoint App Accessed</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Microsoft SharePoint Online</div>
+          <p class="ch-explanation">SigninLogs confirmed Microsoft SharePoint Online — including PageViewed, ListCreated, ListColumnCreated, and breaking sharing inheritance. Data exposure spans both personal cloud storage (OneDrive) and corporate file shares (SharePoint), maximising the breach scope.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q23</span>
+          <span class="challenge-name">Session Correlation (AAD Session ID)</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ 00225cfa-a0ff-fb46-a079-5d152fcdf72a</div>
+          <p class="ch-explanation">AppAccessContext.AADSessionId in the inbox rule RawEventData was cross-referenced with the SessionId in SigninLogs. A single session ID ties all attacker activity: sign-in, inbox access, rule creation, file access, and BEC email sending — definitive forensic correlation across all log sources.</p>
+          <div class="kql-block">
+            <div class="kql-header"><span class="kql-label">KQL — Session Correlation</span><button class="kql-copy" onclick="copyKQL(this)">Copy</button></div>
+            <div class="kql-code"><span class="kql-keyword">SigninLogs</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> TimeGenerated <span class="kql-keyword">between</span> (<span class="kql-function">datetime</span>(<span class="kql-string">2026-02-25T21:00:00Z</span>) .. <span class="kql-function">datetime</span>(<span class="kql-string">2026-02-25T23:00:00Z</span>))
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> IPAddress <span class="kql-operator">==</span> <span class="kql-string">"205.147.16.190"</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">where</span> ResultType <span class="kql-operator">==</span> <span class="kql-num">0</span>
+<span class="kql-operator">|</span> <span class="kql-keyword">project</span> TimeGenerated, SessionId, AppDisplayName, ConditionalAccessStatus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q24</span>
+          <span class="challenge-name">Conditional Access Status</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ notApplied</div>
+          <p class="ch-explanation">ConditionalAccessStatus = notApplied on EVERY attacker sign-in — this is the critical defensive gap that enabled the entire attack. No Conditional Access policies were enforced against the attacker's sessions, meaning no check for compliant devices, managed devices, or geographic restrictions was ever applied.</p>
+          <div class="callout">
+            <div class="callout-title">Primary Gap — Immediate Fix Required</div>
+            <p>A single CA policy requiring managed/compliant devices blocks Linux/Firefox 147.0 access entirely, regardless of session token validity. This one control breaks the AiTM kill chain at the point of access.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q25</span>
+          <span class="challenge-name">MFA Fatigue MITRE ID</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ T1621</div>
+          <p class="ch-explanation">MFA Fatigue maps to MITRE ATT&CK T1621 — Multi-Factor Authentication Request Generation. This technique involves sending repeated MFA push notifications to wear down a user into approving the request, or as seen here, using it as cover while waiting for session token intercept via AiTM proxy.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q27</span>
+          <span class="challenge-name">Credential Source</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Infostealer</div>
+          <p class="ch-explanation">Scattered Spider purchases credentials from Infostealer marketplace logs — malware that harvests saved passwords, session tokens, and browser data from infected machines. The attacker already had Mark's password before the MFA fatigue phase began, which is why they could immediately proceed to the AiTM phase once credentials were confirmed valid.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q28</span>
+          <span class="challenge-name">Immediate Containment Action</span>
+          <span class="challenge-pts">75 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Revoke sessions</div>
+          <p class="ch-explanation">With the attacker holding a valid session token and both inbox rules still active, the single most critical immediate action is 'Revoke sessions' via Azure AD — this immediately invalidates the stolen session token and terminates all active attacker connections. All other remediation (password reset, rule deletion, IP blocking) follows but none is as time-critical as session revocation.</p>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-header" onclick="toggleChallenge(this)">
+          <span class="challenge-num">Q29</span>
+          <span class="challenge-name">Threat Actor Attribution</span>
+          <span class="challenge-pts">100 pts</span>
+          <span class="challenge-correct">✓ CORRECT</span>
+          <span class="challenge-chevron">▶</span>
+        </div>
+        <div class="challenge-body">
+          <div class="ch-answer">✓ Scattered Spider</div>
+          <p class="ch-explanation">All TTPs across the investigation confirm Scattered Spider (UNC3944): MFA fatigue harassment, AiTM session token theft, inbox rule persistence, BEC targeting finance, and use of anonymising infrastructure. The briefing mentioned a group that previously targeted MGM Resorts and Caesars Entertainment using identical techniques — Scattered Spider.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SECTION 8: Impact ── -->
+  <section id="impact">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Impact Assessment</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cia-grid">
+      <div class="cia-card critical">
+        <div class="cia-label">Confidentiality</div>
+        <div class="cia-rating">CRITICAL</div>
+        <div class="cia-desc">Email content, OneDrive files, and SharePoint data exposed. Financial emails forwarded to attacker-controlled insights@duck.com. Mark's full inbox was profiled before the BEC attempt.</div>
+      </div>
+      <div class="cia-card high">
+        <div class="cia-label">Integrity</div>
+        <div class="cia-rating">HIGH</div>
+        <div class="cia-desc">BEC wire fraud sent to j.reynolds. Two covert inbox rules manipulated mail flow and suppressed all security alerts. SharePoint sharing inheritance broken. Financial data falsified via invoice thread hijacking.</div>
+      </div>
+      <div class="cia-card low">
+        <div class="cia-label">Availability</div>
+        <div class="cia-rating">LOW</div>
+        <div class="cia-desc">No service disruption. Microsoft 365 remained operational throughout the attack. The attacker deliberately avoided anything that would trigger availability alerts or visibility.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 9: Recommendations ── -->
+  <section id="recommendations">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Recommendations</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="rec-group">
+      <div class="rec-group-title">Immediate — 0 to 24 Hours</div>
+      <div class="rec-list">
+        <div class="rec-item">Revoke all active sessions for m.smith@lognpacific.org via <strong>Azure AD → Revoke Sign-in Sessions</strong> — immediately invalidates the stolen token</div>
+        <div class="rec-item">Force <strong>password reset</strong> on the compromised account</div>
+        <div class="rec-item">Delete both malicious inbox rules (<strong>'.'</strong> and <strong>'..'</strong>) from Mark's mailbox immediately</div>
+        <div class="rec-item">Block <strong>205.147.16.190</strong> at the perimeter firewall and via Azure AD Named Locations (Conditional Access)</div>
+        <div class="rec-item">Block <strong>insights@duck.com</strong> at the email gateway — add to blocked sender list</div>
+        <div class="rec-item">Contact <strong>j.reynolds@lognpacific.org</strong> urgently — confirm no wire transfer was actioned on the fraudulent request</div>
+        <div class="rec-item">Initiate <strong>data impact assessment</strong> for all OneDrive and SharePoint content accessed from the attacker IP</div>
+      </div>
+    </div>
+
+    <div class="rec-group">
+      <div class="rec-group-title">Short-Term — 1 to 7 Days</div>
+      <div class="rec-list">
+        <div class="rec-item">Deploy <strong>Phishing-Resistant MFA</strong> (FIDO2 hardware key / Windows Hello for Business) — eliminates AiTM token-replay attack surface entirely</div>
+        <div class="rec-item">Enforce <strong>Conditional Access</strong> requiring compliant, managed devices for M365 access — ConditionalAccessStatus was notApplied; this is the primary gap to close</div>
+        <div class="rec-item">Enable <strong>Continuous Access Evaluation (CAE)</strong> — near-real-time session token revocation on location/IP anomaly</div>
+        <div class="rec-item">Search SigninLogs for <strong>205.147.16.190 across ALL UPNs</strong> to identify any other compromised accounts from the same campaign</div>
+        <div class="rec-item">Review all CloudAppEvents and EmailEvents for the attack window to confirm full exfiltration and BEC scope</div>
+      </div>
+    </div>
+
+    <div class="rec-group">
+      <div class="rec-group-title">Strategic — Long-Term</div>
+      <div class="rec-list">
+        <div class="rec-item">Deploy <strong>Microsoft Entra ID Protection</strong> with risk-based Conditional Access — auto-blocks sign-ins with token replay anomaly scores</div>
+        <div class="rec-item">Enable <strong>Defender for Cloud Apps</strong> anomaly policies: impossible travel, mass download, infrequent country authentication</div>
+        <div class="rec-item">Implement <strong>inbox rule monitoring alerts</strong>: New-InboxRule where ForwardTo is external, rule name is a single/double character, or StopProcessingRules is True</div>
+        <div class="rec-item">Implement <strong>BEC controls</strong>: mandatory out-of-band verification for any wire transfer or banking detail change, regardless of internal sender</div>
+        <div class="rec-item">Monitor endpoints for <strong>Infostealer indicators</strong> — credential theft precedes AiTM in the Scattered Spider kill chain; early detection here breaks the chain entirely</div>
+        <div class="rec-item">Conduct targeted <strong>Scattered Spider awareness training</strong> — AiTM phishing pages are visually indistinguishable from legitimate Microsoft login pages</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 10: Conclusion ── -->
+  <section id="conclusion">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Conclusion</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>This threat hunt by <strong>Vishvdeep Bal</strong> on the Log(N) Pacific Cyber Range successfully reconstructed the <strong>complete Scattered Spider kill chain</strong>: from Infostealer credential theft, through AiTM MFA bypass, 30+ burst post-auth data accesses, dual inbox rule persistence, OneDrive/SharePoint exfiltration, and Business Email Compromise wire fraud. <strong>28 of 29 challenges were solved</strong>, scoring 2410 points and placing 71st on the global leaderboard.</p>
+
+    <div class="callout">
+      <div class="callout-title">Most Actionable Finding</div>
+      <p>The single most actionable finding from this investigation is the <strong>ConditionalAccessStatus: notApplied</strong> gap. Enforcing a Conditional Access policy requiring compliant, managed devices would have blocked the attacker's Linux/Firefox 147.0 session replay entirely — regardless of whether their session token was valid. This one control breaks the AiTM kill chain at the point of access rather than at the MFA gate.</p>
+    </div>
+
+    <p>The complete attack was correlated through a <strong>single AAD Session ID</strong> (00225cfa-a0ff-fb46-a079-5d152fcdf72a), demonstrating the forensic value of session-level correlation across SigninLogs, CloudAppEvents, and EmailEvents in Microsoft Sentinel. KQL-based hunting in the LAW-Cyber-Range workspace provided definitive, evidence-grounded findings at every stage of the kill chain.</p>
+
+    <div class="callout info">
+      <div class="callout-title">Key Detection Engineering Takeaway</div>
+      <p>Alert on <strong>New-InboxRule where the rule name is a single or double character</strong> and <strong>ForwardTo contains an external domain</strong>. Alert on <strong>successful sign-ins where ConditionalAccessStatus = notApplied from non-domestic IPs</strong>. These two detections would have surfaced this attack within minutes of the attacker's first successful authentication.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div>
+      <span class="mono">IR-2026-0225-001</span> · Scattered Spider AiTM/BEC · CONFIDENTIAL
+    </div>
+    <div>
+      Analyst: <span class="mono">Vishvdeep Bal</span> · Log(N) Pacific Cyber Range · Report: 2026-04-17
+    </div>
+    <div>
+      <span class="mono" style="color:var(--green);">2410 pts · 71st Place · 28/29 Challenges Solved</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+  // Toggle challenge cards
+  function toggleChallenge(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+
+  function expandAll() {
+    document.querySelectorAll('.challenge-card').forEach(c => c.classList.add('open'));
+  }
+  function collapseAll() {
+    document.querySelectorAll('.challenge-card').forEach(c => c.classList.remove('open'));
+  }
+
+  // Copy IOC
+  function copyIOC(val, el) {
+    navigator.clipboard.writeText(val).then(() => showToast());
+  }
+
+  // Copy KQL
+  function copyKQL(btn) {
+    const code = btn.closest('.kql-block').querySelector('.kql-code').innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
