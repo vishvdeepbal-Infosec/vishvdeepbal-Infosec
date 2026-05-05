@@ -6,8 +6,14 @@ Welcome to my professional security laboratory. This repository documents active
 
 ---
 
-## 🚀 Featured Scenarios
+## 🚀 Featured Projects
 
+### 🔹 [Scattered Spider (UNC3944) – Identity-Based Threat Hunt](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat-Hunt-Portfolio/03-Scattered-Spider%20(Completed).md)
+* **Focus:** Social Engineering, MFA Bypass, Identity-Based Lateral Movement & Cloud Persistence.
+* **Tech:** Microsoft Sentinel, KQL, Microsoft Defender for Identity, Azure Log Analytics.
+* **Outcome:** Mapped full adversary kill chain of **Scattered Spider (UNC3944)** — a financially motivated threat actor — across Initial Access, Credential Access, Persistence, and Lateral Movement, aligned to **MITRE ATT&CK T1621, T1556.006, T1098.005, T1219**.
+* **Status:** ✅ **Completed**
+  
 ### 🔹 [Project Sentinel-Eye: Authentication Audit](https://github.com/vishvdeepbal-Infosec/vishvdeepbal-Infosec/blob/main/Threat-Hunt-Portfolio/01-Sentinel-Eye%20(Completed).md)
 * **Focus:** Brute Force & Credential Spraying Detection.
 * **Tech:** Microsoft Sentinel, KQL, Azure Log Analytics.
